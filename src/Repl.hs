@@ -5,6 +5,8 @@ module Repl
 
 import           Control.Monad
 import           System.IO
+import           Parser (readExpr)
+import qualified Data.Text as T
 
 
 flushStr :: String -> IO ()
@@ -26,5 +28,6 @@ replLoop = do
   putStrLn "Lispy Version 0.0.0.0.1"
   putStrLn "Press Ctrl+c or type quit to Exit\n"
   -- main loop
-  until_ (== "quit") (readLine "lispy> ") $ \input ->
-    putStrLn $ "No you're a " ++ input ++ "\n"
+  until_ (== "quit") (readLine "lispy> ") $ \input -> do
+    let ast = readExpr $ T.pack input
+    print ast

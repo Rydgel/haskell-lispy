@@ -13,22 +13,23 @@ data Sexpr = Atom String
            | Number Integer
            | String String
            | Bool Bool
+             deriving (Show)
 
 type Env = [(String, Sexpr)]
 
-instance Show Sexpr where
-  show (Atom x) = x
-  show (List x) =
-    case x of
-        Atom "quote" : _ -> "'" ++ unwords' (tail x)
-        _ -> "(" ++ unwords' x ++ ")"
-  show (DottedList h t) = "(" ++ unwords' h ++ " . " ++ show t ++ ")"
-  show (String s) = "\"" ++ s ++ "\""
-  show (Number n) = show n
-  show (Function _ (Just name) _ _) = "<λ " ++ name ++ " >"
-  show (Function _ Nothing _ _) = "<λ>"
-  show (Bool True) = "#t"
-  show (Bool False) = "#f"
+-- instance Show Sexpr where
+--   show (Atom x) = x
+--   show (List x) =
+--     case x of
+--         Atom "quote" : _ -> "'" ++ unwords' (tail x)
+--         _ -> "(" ++ unwords' x ++ ")"
+--   show (DottedList h t) = "(" ++ unwords' h ++ " . " ++ show t ++ ")"
+--   show (String s) = "\"" ++ s ++ "\""
+--   show (Number n) = show n
+--   show (Function _ (Just name) _ _) = "<λ " ++ name ++ " >"
+--   show (Function _ Nothing _ _) = "<λ>"
+--   show (Bool True) = "#t"
+--   show (Bool False) = "#f"
 
 instance Eq Sexpr where
   (==) (Atom a) (Atom b) = a == b

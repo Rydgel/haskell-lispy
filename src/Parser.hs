@@ -1,20 +1,18 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Parser
-    (
+    ( readExpr
     ) where
 
 
 import           Control.Applicative
 import           Core
 import           Data.Attoparsec.Text
+import qualified Data.Text            as T
 
 
 oneOf :: String -> Parser Char
 oneOf cs = satisfy (`elem` cs)
-
-noneOf :: String -> Parser Char
-noneOf cs = satisfy (`notElem` cs)
 
 sepEndBy :: Alternative f => f a -> f b -> f [a]
 sepEndBy p sep = sepBy p sep <* optional sep
@@ -75,7 +73,11 @@ parseExpr =
     _ <- spaces
     return x
 
-
-
 parser :: Parser [Sexpr]
 parser = many1 parseExpr
+
+readExpr :: T.Text -> [Sexpr]
+readExpr "" = []
+readExpr input = case parseOnly parser input of
+  Right x  -> x
+  Left err -> error $ "Cannot parse expr : " ++ show err
