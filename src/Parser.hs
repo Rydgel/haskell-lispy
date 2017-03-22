@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Parser
-    ( readExpr
-    ) where
+  ( readExpr
+  ) where
 
 
 import           Control.Applicative

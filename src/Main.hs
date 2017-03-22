@@ -1,6 +1,6 @@
 module Main where
 
-import           Repl          (replLoop)
+import           Repl (replLoop)
 
 
 main :: IO ()

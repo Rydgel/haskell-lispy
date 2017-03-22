@@ -1,33 +1,34 @@
 module Primitives
-    ( primitives
-    ) where
+  ( primitives
+  ) where
 
 import           Core
 
 -- Primitives, implemented in terms of haskell
 primitives :: [(String, [Sexpr] -> Sexpr)]
-primitives = [("eq", eq),
-              ("null?", nullq),
-              ("car", car),
-              ("cdr", cdr),
-              ("cons", cons),
-              ("length", length'),
-              ("list", List),
-              ("*", numericBinop (*)),
-              ("+", numericBinop (+)),
-              ("-", numericBinop (-)),
-              ("/", numericBinop div),
-              ("/=", numBoolBinop (/=)),
-              ("<", numBoolBinop (<)),
-              ("<=", numBoolBinop (<=)),
-              ("=", numBoolBinop (==)),
-              (">", numBoolBinop (>)),
-              (">=", numBoolBinop (>=)),
-              -- [verify] Get quotient from stdlib
-              ("quotient", numericBinop mod),
-              ("quot", numericBinop quot),
-              ("quote", head),
-              ("rem", numericBinop rem)]
+primitives =
+  [("eq", eq),
+   ("null?", nullq),
+   ("car", car),
+   ("cdr", cdr),
+   ("cons", cons),
+   ("length", length'),
+   ("list", List),
+   ("*", numericBinop (*)),
+   ("+", numericBinop (+)),
+   ("-", numericBinop (-)),
+   ("/", numericBinop div),
+   ("/=", numBoolBinop (/=)),
+   ("<", numBoolBinop (<)),
+   ("<=", numBoolBinop (<=)),
+   ("=", numBoolBinop (==)),
+   (">", numBoolBinop (>)),
+   (">=", numBoolBinop (>=)),
+   -- [verify] Get quotient from stdlib
+   ("quotient", numericBinop mod),
+   ("quot", numericBinop quot),
+   ("quote", head),
+   ("rem", numericBinop rem)]
 
 -- [todo] - Add a prelude file which can have pure lisp definitions
 -- [todo] - Define stdlib in pure lisp when possible

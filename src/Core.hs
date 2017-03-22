@@ -1,19 +1,20 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Core
-    ( Sexpr(..)
-    , Env
-    ) where
+  ( Sexpr (..)
+  , Env
+  ) where
 
 
-data Sexpr = Atom String
-           | List [Sexpr]
-           | Function Env (Maybe String) [Sexpr] [Sexpr]
-           | DottedList [Sexpr] Sexpr
-           | Number Integer
-           | String String
-           | Bool Bool
-             deriving (Show)
+data Sexpr
+  = Atom String
+  | List [Sexpr]
+  | Function Env (Maybe String) [Sexpr] [Sexpr]
+  | DottedList [Sexpr] Sexpr
+  | Number Integer
+  | String String
+  | Bool Bool
+  deriving (Show)
 
 type Env = [(String, Sexpr)]
 
